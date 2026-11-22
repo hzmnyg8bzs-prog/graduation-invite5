@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ستوري دعوة حفل السكراب | د. عبدالعزيز سعدون عباس</title>
+    
+    <!-- خطوط عربية فاخرة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                        amiri: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        burgundy: {
+                            950: '#16040a',
+                            900: '#230912',
+                            800: '#3a0f1e',
+                            700: '#52162b',
+                        },
+                        champagne: {
+                            300: '#f7e5a8',
+                            400: '#e5c158',
+                            500: '#cfa336',
+                            600: '#a67c1e',
+                        },
+                        rosegold: '#f3a683',
+                        ivory: '#fdf8f5',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        input, textarea {
+            user-select: text !important;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #120308;
+            font-family: 'Cairo', sans-serif;
+            color: #fdf8f5;
+        }
+
+        /* خلفية شاشة سطح المكتب المحيطة بإطار الستوري */
+        .desktop-backdrop {
+            background: radial-gradient(circle at 30% 20%, rgba(82, 22, 43, 0.5) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 80%, rgba(229, 193, 88, 0.18) 0%, transparent 50%),
+                        #120308;
+        }
+
+        /* حاوية الستوري الرئيسية (تملأ الشاشة على الجوال وتظهر كإطار هاتف على الكمبيوتر) */
+        .story-frame {
+            background: radial-gradient(circle at 50% 15%, rgba(92, 24, 48, 0.85) 0%, rgba(35, 9, 18, 0.96) 55%, #19050c 100%);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(229, 193, 88, 0.15);
+            border: 1px solid rgba(229, 193, 88, 0.25);
+        }
+
+        /* تدرج النص الذهبي الشمباني */
+        .text-champagne-gradient {
+            background: linear-gradient(110deg, #fdf8f5 0%, #f7e5a8 25%, #e5c158 55%, #f3a683 80%, #f7e5a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmerGold 4.5s linear infinite;
+        }
+
+        @keyframes shimmerGold {
+            to { background-position: 200% center; }
+        }
+
+        /* بطاقة زجاجية عنابية فاخرة */
+        .wine-glass {
+            background: linear-gradient(145deg, rgba(58, 15, 30, 0.65), rgba(26, 6, 13, 0.78));
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(229, 193, 88, 0.28);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(253, 248, 245, 0.08);
+        }
+
+        /* نظام شرائح الستوري وانتقالات الموشن جرافيك */
+        .story-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5.5rem 1.35rem 2.25rem 1.35rem;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: scale(1.06);
+            filter: blur(6px);
+            transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                        filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                        visibility 0.55s;
+            z-index: 5;
+        }
+
+        .story-slide.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: scale(1);
+            filter: blur(0px);
+            z-index: 10;
+        }
+
+        /* حركات ظهور العناصر داخل كل ستوري */
+        .story-slide .anim-up {
+            opacity: 0;
+            transform: translateY(22px) scale(0.97);
+            transition: all 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .story-slide.active .anim-up {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .story-slide.active .d-1 { transition-delay: 0.08s; }
+        .story-slide.active .d-2 { transition-delay: 0.20s; }
+        .story-slide.active .d-3 { transition-delay: 0.32s; }
+        .story-slide.active .d-4 { transition-delay: 0.44s; }
+        .story-slide.active .d-5 { transition-delay: 0.56s; }
+
+        /* حلقة الصورة الرمزية على طراز إنستغرام */
+        .story-avatar-ring {
+            background: conic-gradient(from 45deg, #e5c158, #f3a683, #a67c1e, #fdf8f5, #e5c158);
+            padding: 2px;
+        }
+
+        /* نبض القلب الذهبي */
+        .ecg-path {
+            stroke-dasharray: 320;
+            stroke-dashoffset: 320;
+            animation: ecgFlow 3s linear infinite;
+        }
+        @keyframes ecgFlow {
+            0% { stroke-dashoffset: 320; opacity: 0.3; }
+            50% { stroke-dashoffset: 0; opacity: 1; }
+            100% { stroke-dashoffset: -320; opacity: 0.3; }
+        }
+
+        /* حركة طفو هادئة */
+        @keyframes floatGentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-slow {
+            animation: floatGentle 4.2s ease-in-out infinite;
+        }
+
+        /* إخفاء واجهة الستوري مؤقتاً عند الضغط المطول (Hold to Pause) */
+        .story-paused .story-chrome {
+            opacity: 0.35;
+            transition: opacity 0.25s ease;
+        }
+        .story-chrome {
+            transition: opacity 0.25s ease;
+        }
+
+        /* تمرير داخلي ناعم عند الحاجة في الشاشات الصغيرة جداً */
+        .story-scroll {
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .story-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="desktop-backdrop flex items-center justify-center w-full h-full">
+
+    <!-- كانفاس الخلفية المضيئة خارج الإطار -->
+    <canvas id="ambientCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- أزرار تنقل جانبية للشاشات الكبيرة (Desktop Arrows) -->
+    <button onclick="prevStory()" aria-label="الستوري السابق"
+            class="hidden md:flex fixed right-8 lg:right-20 z-30 w-12 h-12 rounded-full wine-glass items-center justify-center text-champagne-300 hover:bg-champagne-400 hover:text-burgundy-950 transition-all shadow-xl">
+        <i class="fa-solid fa-chevron-right text-lg"></i>
+    </button>
+
+    <button onclick="nextStory()" aria-label="الستوري التالي"
+            class="hidden md:flex fixed left-8 lg:left-20 z-30 w-12 h-12 rounded-full wine-glass items-center justify-center text-champagne-300 hover:bg-champagne-400 hover:text-burgundy-950 transition-all shadow-xl">
+        <i class="fa-solid fa-chevron-left text-lg"></i>
+    </button>
+
+    <!-- ==================== حاوية الستوري الرئيسية ==================== -->
+    <div id="storyContainer" class="story-frame relative w-full h-full sm:w-[410px] sm:h-[92vh] sm:max-h-[820px] sm:rounded-[2.2rem] overflow-hidden flex flex-col">
+
+        <!-- كانفاس الجزيئات والشرارات داخل الستوري -->
+        <canvas id="storyParticles" class="absolute inset-0 w-full h-full pointer-events-none z-1"></canvas>
+        <!-- كانفاس الاحتفالية -->
+        <canvas id="confettiCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-50"></canvas>
+
+        <!-- تدرج علوي لحماية وضوح شريط الستوري -->
+        <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-burgundy-950/90 via-burgundy-950/40 to-transparent pointer-events-none z-20"></div>
+
+        <!-- ==================== الترويسة العلوية للستوري (Progress Bars + Header) ==================== -->
+        <header class="story-chrome absolute top-0 left-0 right-0 z-30 pt-3 px-3.5">
+            <!-- 7 أشرطة تقدم الستوري -->
+            <div id="progressBarsContainer" class="grid grid-cols-7 gap-1.5 mb-3">
+                <div class="h-1 bg-ivory/20 rounded-full overflow-hidden"><div class="progress-fill h-full bg-gradient-to-l from-champagne-300 to-rosegold w-0 rounded-full"></div></div>
+                <div class="h-1 bg-ivory/20 rounded-full overflow-hidden"><div class="progress-fill h-full bg-gradient-to-l from-champagne-300 to-rosegold w-0 rounded-full"></div></div>
+                <div class="h-1 bg-ivory/20 rounded-full overflow-hidden"><div class="progress-fill h-full bg-gradient-to-l from-champagne-300 to-rosegold w-0 rounded-full"></div></div>
+                <div class="h-1 bg-ivory/20 rounded-full overflow-hidden"><div class="progress-fill h-full bg-gradient-to-l from-champagne-300 to-rosegold w-0 rounded-full"></div></div>
+                <div class="h-1 bg-ivory/20 rounded-full overflow-hidden"><div class="progress-fill h-full bg-gradient-to-l from-champagne-300 to-rosegold w-0 rounded-full"></div></div>
+                <div class="h-1 bg-ivory/20 rounded-full overflow-hidden"><div class="progress-fill h-full bg-gradient-to-l from-champagne-300 to-rosegold w-0 rounded-full"></div></div>
+                <div class="h-1 bg-ivory/20 rounded-full overflow-hidden"><div class="progress-fill h-full bg-gradient-to-l from-champagne-300 to-rosegold w-0 rounded-full"></div></div>
+            </div>
+
+            <!-- معلومات صاحب الستوري -->
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="story-avatar-ring w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                        <div class="w-full h-full rounded-full bg-burgundy-900 flex items-center justify-center">
+                            <i class="fa-solid fa-tooth text-champagne-300 text-sm"></i>
+                        </div>
+                    </div>
+                    <div class="leading-tight">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-xs sm:text-sm font-bold text-ivory">د. عبدالعزيز سعدون عباس</span>
+                            <i class="fa-solid fa-circle-check text-champagne-400 text-[11px]"></i>
+                        </div>
+                        <span class="text-[11px] text-rosegold font-medium">حفل السكراب • كلية الحكمة الجامعة</span>
+                    </div>
+                </div>
+
+                <!-- مؤشر الحالة / إيقاف مؤقت / مشاركة -->
+                <div class="flex items-center gap-2">
+                    <span id="pauseBadge" class="hidden px-2 py-0.5 rounded-full bg-burgundy-800/90 border border-champagne-400/40 text-[10px] text-champagne-300 font-bold">
+                        متوقف مؤقتاً
+                    </span>
+                    <button onclick="toggleManualPause(event)" id="pauseBtn" aria-label="إيقاف أو تشغيل"
+                            class="w-8 h-8 rounded-full bg-ivory/10 hover:bg-ivory/20 flex items-center justify-center text-ivory text-xs transition-colors">
+                        <i id="pauseIcon" class="fa-solid fa-pause"></i>
+                    </button>
+                    <button onclick="copyInviteLink(event)" aria-label="نسخ الدعوة"
+                            class="w-8 h-8 rounded-full bg-ivory/10 hover:bg-ivory/20 flex items-center justify-center text-champagne-300 text-xs transition-colors">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- مناطق النقر الجانبية للتنقل السريع (يمين = السابق، يسار = التالي) -->
+        <div id="tapRight" class="absolute top-20 bottom-16 right-0 w-[26%] z-20 cursor-pointer" title="السابق"></div>
+        <div id="tapLeft" class="absolute top-20 bottom-16 left-0 w-[26%] z-20 cursor-pointer" title="التالي"></div>
+
+        <!-- ==================== الشرائح السبع للستوري (7 Stories) ==================== -->
+        <div id="slidesWrapper" class="relative w-full h-full">
+
+            <!-- 🌟 ستوري 1: الغلاف السينمائي -->
+            <section class="story-slide active story-scroll" data-index="0">
+                <div class="w-full text-center space-y-4 my-auto">
+                    <div class="anim-up d-1 inline-flex items-center gap-2 px-3.5 py-1 rounded-full wine-glass text-rosegold text-xs font-bold tracking-wide">
+                        <i class="fa-solid fa-sparkles text-champagne-400"></i>
+                        <span>دعوة خاصة لحفل التخرج</span>
+                    </div>
+
+                    <div class="anim-up d-2 relative mx-auto w-24 h-24 rounded-3xl wine-glass flex items-center justify-center float-slow">
+                        <div class="absolute inset-1.5 rounded-2xl border border-champagne-400/30"></div>
+                        <i class="fa-solid fa-user-doctor text-4xl text-champagne-300"></i>
+                    </div>
+
+                    <div class="anim-up d-2 space-y-1">
+                        <p class="font-amiri text-2xl sm:text-3xl text-rosegold">« ارتدينا السكراب.. وبدأت الحكاية »</p>
+                    </div>
+
+                    <div class="anim-up d-3 wine-glass rounded-3xl p-5 relative overflow-hidden">
+                        <div class="absolute top-2 right-2 w-5 h-5 border-t border-r border-champagne-400/50 rounded-tr-lg"></div>
+                        <div class="absolute bottom-2 left-2 w-5 h-5 border-b border-l border-champagne-400/50 rounded-bl-lg"></div>
+                        
+                        <p class="text-xs text-ivory/75 mb-1">يتشرف بدعوتكم</p>
+                        <h1 class="text-3xl sm:text-4xl font-black text-champagne-gradient leading-snug">
+                            عبدالعزيز سعدون عباس
+                        </h1>
+                        <div class="h-px w-24 mx-auto my-3 bg-gradient-to-r from-transparent via-champagne-400/60 to-transparent"></div>
+                        <p class="text-sm font-bold text-ivory flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-champagne-400"></i>
+                            <span>كلية الحكمة الجامعة • طب الأسنان</span>
+                        </p>
+                    </div>
+
+                    <div class="anim-up d-4 inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-burgundy-950/80 border border-champagne-400/40 shadow-lg">
+                        <i class="fa-regular fa-calendar-check text-rosegold"></i>
+                        <span class="text-champagne-300 font-extrabold text-base tracking-widest" dir="ltr">2026 / 12 / 04</span>
+                    </div>
+
+                    <div class="anim-up d-5 pt-2">
+                        <button onclick="nextStory()" class="inline-flex items-center gap-2 text-xs text-ivory/70 hover:text-champagne-300 transition-colors">
+                            <span>اضغط يساراً أو اسحب لمتابعة القصة</span>
+                            <i class="fa-solid fa-arrow-left-long animate-pulse text-champagne-400"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 🌟 ستوري 2: عبارة فخر وبداية المشوار -->
+            <section class="story-slide story-scroll" data-index="1">
+                <div class="w-full text-center space-y-5 my-auto">
+                    <div class="anim-up d-1">
+                        <span class="px-3 py-1 rounded-full bg-champagne-400/15 border border-champagne-400/30 text-champagne-300 text-xs font-bold">
+                            فصلٌ جديد من الإنجاز
+                        </span>
+                    </div>
+
+                    <!-- رسم نبض القلب الطبي -->
+                    <div class="anim-up d-2 flex justify-center">
+                        <svg width="240" height="44" viewBox="0 0 240 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="ecg-path" d="M0 22H75L88 6L102 38L116 12L126 28L135 22H240" stroke="#e5c158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="anim-up d-3 wine-glass rounded-3xl p-6 sm:p-7 relative">
+                        <i class="fa-solid fa-quote-right text-2xl text-champagne-400/40 block mb-2"></i>
+                        <p class="font-amiri text-2xl sm:text-[26px] leading-relaxed text-ivory">
+                            سنواتٌ من السهر، المحاضرات، والعمل الدؤوب.. تُتوَّج اليوم بلحظة ارتداء <span class="text-champagne-300">السكراب</span>، إيذاناً ببداية مشوارٍ جديد في عالم الطب والإنسانية.
+                        </p>
+                        <i class="fa-solid fa-quote-left text-2xl text-champagne-400/40 block mt-2 text-left"></i>
+                    </div>
+
+                    <div class="anim-up d-4 flex items-center justify-center gap-3 text-xs text-rosegold font-semibold">
+                        <span class="w-8 h-px bg-rosegold/40"></span>
+                        <span>دفعة التميز • 2026</span>
+                        <span class="w-8 h-px bg-rosegold/40"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 🌟 ستوري 3: عبارة امتنان ومشاركة الفرحة -->
+            <section class="story-slide story-scroll" data-index="2">
+                <div class="w-full text-center space-y-5 my-auto">
+                    <div class="anim-up d-1 w-16 h-16 mx-auto rounded-full wine-glass flex items-center justify-center float-slow">
+                        <i class="fa-solid fa-heart text-2xl text-rosegold"></i>
+                    </div>
+
+                    <h2 class="anim-up d-2 text-2xl sm:text-3xl font-extrabold text-champagne-gradient">
+                        فرحةٌ تكتمل بكم
+                    </h2>
+
+                    <div class="anim-up d-3 wine-glass rounded-3xl p-6 sm:p-7 space-y-4">
+                        <p class="font-amiri text-2xl sm:text-[25px] leading-relaxed text-ivory">
+                            لا تكتمل فرحة الإنجاز إلا بوجود من كان لهم الأثر الأجمل في القلب..
+                        </p>
+                        <div class="h-px w-16 mx-auto bg-champagne-400/40"></div>
+                        <p class="text-sm sm:text-base text-ivory/90 leading-relaxed font-tajawal">
+                            حضوركم ومشاركتكم لي في <span class="text-champagne-300 font-bold">حفل السكراب</span> يزيد ليلتنا بهجةً وفخراً، ويخلّد في الذاكرة أجمل اللحظات التي لا تُنسى.
+                        </p>
+                    </div>
+
+                    <div class="anim-up d-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-burgundy-950/60 border border-rosegold/30 text-xs text-ivory/80">
+                        <i class="fa-solid fa-champagne-glasses text-champagne-400"></i>
+                        <span>وجودكم هو أجمل هدية في يوم تخرجي</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 🌟 ستوري 4: عبارة المستقبل والعد التنازلي المباشر -->
+            <section class="story-slide story-scroll" data-index="3">
+                <div class="w-full text-center space-y-4 my-auto">
+                    <div class="anim-up d-1 wine-glass rounded-3xl p-5">
+                        <span class="text-[11px] font-bold text-rosegold tracking-wider uppercase">رسالة وطموح</span>
+                        <p class="font-amiri text-xl sm:text-2xl leading-relaxed text-ivory mt-2">
+                            « خطوةٌ أولى نحو حلمٍ كبير.. معاً نحتفي بختام مرحلة وبداية رسالة سامية نرسم بها الابتسامة ونصنع الأمل »
+                        </p>
+                    </div>
+
+                    <!-- العد التنازلي -->
+                    <div class="anim-up d-2 wine-glass rounded-3xl p-5">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <i class="fa-regular fa-hourglass-half text-champagne-400"></i>
+                            <h3 class="text-sm font-bold text-champagne-300">العد التنازلي للحظة المنتظرة</h3>
+                        </div>
+
+                        <div class="grid grid-cols-4 gap-2" dir="ltr">
+                            <div class="bg-burgundy-950/85 border border-champagne-400/30 rounded-2xl py-3 px-1">
+                                <span id="cd-days" class="block text-2xl sm:text-3xl font-black text-champagne-300">00</span>
+                                <span class="text-[11px] text-ivory/75 font-cairo">يوم</span>
+                            </div>
+                            <div class="bg-burgundy-950/85 border border-rosegold/30 rounded-2xl py-3 px-1">
+                                <span id="cd-hours" class="block text-2xl sm:text-3xl font-black text-rosegold">00</span>
+                                <span class="text-[11px] text-ivory/75 font-cairo">ساعة</span>
+                            </div>
+                            <div class="bg-burgundy-950/85 border border-champagne-400/30 rounded-2xl py-3 px-1">
+                                <span id="cd-minutes" class="block text-2xl sm:text-3xl font-black text-champagne-300">00</span>
+                                <span class="text-[11px] text-ivory/75 font-cairo">دقيقة</span>
+                            </div>
+                            <div class="bg-burgundy-950/85 border border-rosegold/30 rounded-2xl py-3 px-1">
+                                <span id="cd-seconds" class="block text-2xl sm:text-3xl font-black text-rosegold">00</span>
+                                <span class="text-[11px] text-ivory/75 font-cairo">ثانية</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="anim-up d-3 text-xs text-ivory/70">
+                        الجمعة • 4 كانون الأول (ديسمبر) 2026
+                    </p>
+                </div>
+            </section>
+
+            <!-- 🌟 ستوري 5: تفاصيل الزمان والمكان (مجمع النخيل) -->
+            <section class="story-slide story-scroll" data-index="4">
+                <div class="w-full text-center space-y-4 my-auto">
+                    <div class="anim-up d-1">
+                        <span class="text-xs font-bold text-rosegold">الموعد والمكان</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-champagne-gradient mt-0.5">تفاصيل اللقاء</h2>
+                    </div>
+
+                    <div class="anim-up d-2 grid grid-cols-2 gap-3">
+                        <div class="wine-glass rounded-2xl p-4 text-center">
+                            <i class="fa-solid fa-calendar-days text-xl text-champagne-400 mb-1.5"></i>
+                            <h4 class="text-xs text-ivory/75">التاريخ</h4>
+                            <p class="text-sm sm:text-base font-extrabold text-champagne-300 mt-0.5" dir="ltr">2026 / 12 / 4</p>
+                            <span class="text-[11px] text-rosegold">يوم الجمعة</span>
+                        </div>
+
+                        <div class="wine-glass rounded-2xl p-4 text-center">
+                            <i class="fa-solid fa-shirt text-xl text-rosegold mb-1.5"></i>
+                            <h4 class="text-xs text-ivory/75">الزي الرسمي</h4>
+                            <p class="text-sm sm:text-base font-extrabold text-ivory mt-0.5">Scrubs</p>
+                            <span class="text-[11px] text-champagne-300">الزي الطبي الأنيق</span>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة موقع مجمع النخيل -->
+                    <div class="anim-up d-3 wine-glass rounded-3xl p-5 space-y-4 border-champagne-400/50">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-champagne-400 to-rosegold text-burgundy-950 flex items-center justify-center shadow-lg">
+                            <i class="fa-solid fa-location-dot text-2xl"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-rosegold font-semibold">موقع إقامة الحفل</span>
+                            <h3 class="text-2xl font-black text-ivory mt-0.5">مجمع النخيل</h3>
+                            <p class="text-xs text-ivory/75 mt-1">بغداد - قاعة الاحتفالات والمناسبات</p>
+                        </div>
+
+                        <a href="https://maps.google.com/?q=مجمع+النخيل+بغداد" target="_blank" rel="noopener noreferrer"
+                           onclick="event.stopPropagation()"
+                           class="w-full py-3 px-4 rounded-2xl bg-gradient-to-l from-champagne-400 via-champagne-300 to-rosegold text-burgundy-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg hover:scale-[1.02] active:scale-95 transition-transform">
+                            <i class="fa-solid fa-map-location-dot text-base"></i>
+                            <span>فتح الموقع على خرائط جوجل</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 🌟 ستوري 6: تأكيد الحضور عبر واتساب -->
+            <section class="story-slide story-scroll" data-index="5">
+                <div class="w-full my-auto relative z-30" onclick="event.stopPropagation()">
+                    <div class="anim-up d-1 text-center mb-3">
+                        <div class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 mb-1.5">
+                            <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-black text-champagne-gradient">تأكيد الحضور (RSVP)</h2>
+                        <p class="text-[11px] text-ivory/80">أرسل تأكيدك مباشرة إلى د. عبدالعزيز عبر واتساب</p>
+                    </div>
+
+                    <form id="rsvpForm" onsubmit="sendWhatsAppRSVP(event)" class="wine-glass rounded-3xl p-4 sm:p-5 space-y-3">
+                        <div class="anim-up d-2">
+                            <label for="guestName" class="block text-xs font-bold text-champagne-300 mb-1">
+                                الاسم الكريم <span class="text-rosegold">*</span>
+                            </label>
+                            <input type="text" id="guestName" required placeholder="اكتب اسمك هنا..."
+                                   onfocus="pauseForInput(true)" onblur="pauseForInput(false)"
+                                   class="w-full px-3.5 py-2.5 rounded-xl bg-burgundy-950/90 border border-champagne-400/35 text-ivory placeholder-ivory/40 text-xs sm:text-sm focus:outline-none focus:border-champagne-400">
+                        </div>
+
+                        <div class="anim-up d-3">
+                            <label class="block text-xs font-bold text-champagne-300 mb-1">حالة الحضور</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="attendance" value="سأكون أول الحاضرين بإذن الله 🎓✨" checked class="peer sr-only">
+                                    <div class="p-2.5 rounded-xl bg-burgundy-950/80 border border-ivory/15 peer-checked:border-emerald-400 peer-checked:bg-emerald-500/20 text-center transition-all">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 text-sm mb-0.5 block"></i>
+                                        <span class="text-[11px] font-bold text-ivory">سأكون أول الحاضرين</span>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="attendance" value="أعتذر مع كل الحب والتمنيات 💐" class="peer sr-only">
+                                    <div class="p-2.5 rounded-xl bg-burgundy-950/80 border border-ivory/15 peer-checked:border-rosegold peer-checked:bg-rosegold/20 text-center transition-all">
+                                        <i class="fa-solid fa-heart text-rosegold text-sm mb-0.5 block"></i>
+                                        <span class="text-[11px] font-bold text-ivory">أعتذر مع كل الحب</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="anim-up d-4">
+                            <label for="guestNote" class="block text-xs font-bold text-champagne-300 mb-1">
+                                عبارة تهنئة (اختياري)
+                            </label>
+                            <textarea id="guestNote" rows="2" placeholder="ألف مبارك التخرج دكتور عبدالعزيز..."
+                                      onfocus="pauseForInput(true)" onblur="pauseForInput(false)"
+                                      class="w-full px-3.5 py-2 rounded-xl bg-burgundy-950/90 border border-champagne-400/35 text-ivory placeholder-ivory/40 text-xs sm:text-sm focus:outline-none focus:border-champagne-400 resize-none"></textarea>
+                        </div>
+
+                        <div class="anim-up d-5 pt-1">
+                            <button type="submit"
+                                    class="w-full py-3 px-4 rounded-2xl bg-gradient-to-l from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-all">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>إرسال التأكيد عبر واتساب</span>
+                            </button>
+                            <p class="text-center text-[10px] text-ivory/60 mt-1.5" dir="ltr">WhatsApp: 07838699064</p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 🌟 ستوري 7: الختام والدعاء -->
+            <section class="story-slide story-scroll" data-index="6">
+                <div class="w-full text-center space-y-5 my-auto relative z-30">
+                    <div class="anim-up d-1 w-16 h-16 mx-auto rounded-full wine-glass flex items-center justify-center float-slow">
+                        <i class="fa-solid fa-crown text-2xl text-champagne-400"></i>
+                    </div>
+
+                    <div class="anim-up d-2 wine-glass rounded-3xl p-6 sm:p-7 space-y-3">
+                        <p class="font-amiri text-2xl sm:text-3xl leading-relaxed text-champagne-gradient">
+                            « دمتم سنداً وفخراً.. ننتظركم بكل شوق لنصنع معاً ذكرى لا تُنسى »
+                        </p>
+                        <div class="h-px w-20 mx-auto bg-champagne-400/40"></div>
+                        <p class="text-xs sm:text-sm text-ivory/85">
+                            أخوكم الخريج: <span class="font-bold text-champagne-300">د. عبدالعزيز سعدون عباس</span>
+                        </p>
+                    </div>
+
+                    <div class="anim-up d-3 flex flex-col gap-2.5 pt-1">
+                        <button onclick="restartStories(event)"
+                                class="w-full py-3 px-5 rounded-2xl bg-gradient-to-l from-champagne-400 to-rosegold text-burgundy-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg hover:scale-[1.02] active:scale-95 transition-transform">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>إعادة مشاهدة الستوري من البداية</span>
+                        </button>
+
+                        <button onclick="copyInviteLink(event)"
+                                class="w-full py-3 px-5 rounded-2xl wine-glass text-champagne-300 font-bold text-sm flex items-center justify-center gap-2 hover:bg-champagne-400/15 transition-colors">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>نسخ نص ورابط الدعوة للمشاركة</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- تذييل سفلي بسيط يوضح التفاعل -->
+        <footer class="story-chrome absolute bottom-2.5 left-0 right-0 z-20 text-center pointer-events-none">
+            <span class="text-[10px] text-ivory/45 tracking-wide">
+                اضغط مطولاً للإيقاف • اسحب للتنقل بين القصص
+            </span>
+        </footer>
+
+        <!-- إشعار منبثق داخل إطار الستوري -->
+        <div id="storyToast" class="absolute top-20 left-1/2 -translate-x-1/2 z-50 w-[88%] pointer-events-none opacity-0 -translate-y-3 transition-all duration-300">
+            <div class="wine-glass border-champagne-400 px-4 py-2.5 rounded-2xl flex items-center justify-center gap-2 text-center shadow-2xl">
+                <i class="fa-solid fa-sparkles text-champagne-400 text-sm"></i>
+                <span id="storyToastText" class="text-xs font-bold text-ivory"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== 1. إعدادات محرك الستوري (Instagram/Snapchat Engine) ====================
+        const slides = document.querySelectorAll('.story-slide');
+        const progressFills = document.querySelectorAll('.progress-fill');
+        const storyContainer = document.getElementById('storyContainer');
+        const pauseBadge = document.getElementById('pauseBadge');
+        const pauseIcon = document.getElementById('pauseIcon');
+
+        const totalStories = slides.length;
+        // مدة كل ستوري بالمللي ثانية (تمنح وقتاً مريحاً لقراءة العبارات)
+        const storyDurations = [6500, 7500, 7500, 8000, 7500, 25000, 9000];
+
+        let currentIndex = 0;
+        let progress = 0; // من 0 إلى 100
+        let lastFrameTime = performance.now();
+        let isHoldPaused = false;
+        let isManualPaused = false;
+        let isInputFocused = false;
+
+        function isPaused() {
+            return isHoldPaused || isManualPaused || isInputFocused;
+        }
+
+        function updatePauseUI() {
+            if (isPaused()) {
+                storyContainer.classList.add('story-paused');
+                pauseBadge.classList.remove('hidden');
+                pauseIcon.classList.remove('fa-pause');
+                pauseIcon.classList.add('fa-play');
+            } else {
+                storyContainer.classList.remove('story-paused');
+                pauseBadge.classList.add('hidden');
+                pauseIcon.classList.remove('fa-play');
+                pauseIcon.classList.add('fa-pause');
+            }
+        }
+
+        function toggleManualPause(e) {
+            if (e) e.stopPropagation();
+            isManualPaused = !isManualPaused;
+            updatePauseUI();
+        }
+
+        function pauseForInput(state) {
+            isInputFocused = state;
+            updatePauseUI();
+        }
+
+        function showStory(index) {
+            if (index < 0) index = 0;
+            if (index >= totalStories) {
+                // عند انتهاء آخر ستوري يتوقف عنده بهدوء مع إمكانية الإعادة
+                index = totalStories - 1;
+                progress = 100;
+                updateProgressBars();
+                return;
+            }
+
+            slides.forEach((s, i) => {
+                if (i === index) {
+                    s.classList.add('active');
+                    s.scrollTop = 0;
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+
+            currentIndex = index;
+            progress = 0;
+            updateProgressBars();
+
+            // إطلاق شرارات احتفالية خفيفة عند الغلاف والختام
+            if (currentIndex === 0 || currentIndex === 6) {
+                launchConfetti(28);
+            }
+        }
+
+        function updateProgressBars() {
+            progressFills.forEach((bar, i) => {
+                if (i < currentIndex) {
+                    bar.style.width = '100%';
+                } else if (i === currentIndex) {
+                    bar.style.width = `${Math.min(100, progress)}%`;
+                } else {
+                    bar.style.width = '0%';
+                }
+            });
+        }
+
+        function nextStory() {
+            if (currentIndex < totalStories - 1) {
+                showStory(currentIndex + 1);
+            } else {
+                progress = 100;
+                updateProgressBars();
+            }
+        }
+
+        function prevStory() {
+            if (progress > 25 && currentIndex > 0) {
+                // إذا مر جزء من الستوري الحالي يعيده من بدايته أولاً
+                progress = 0;
+                updateProgressBars();
+            } else if (currentIndex > 0) {
+                showStory(currentIndex - 1);
+            } else {
+                progress = 0;
+                updateProgressBars();
+            }
+        }
+
+        function restartStories(e) {
+            if (e) e.stopPropagation();
+            isManualPaused = false;
+            updatePauseUI();
+            showStory(0);
+        }
+
+        // حلقة التحديث السلسة لشريط التقدم (60fps)
+        function storyLoop(now) {
+            const dt = now - lastFrameTime;
+            lastFrameTime = now;
+
+            if (!isPaused()) {
+                const duration = storyDurations[currentIndex] || 7000;
+                progress += (dt / duration) * 100;
+
+                if (progress >= 100) {
+                    if (currentIndex < totalStories - 1) {
+                        showStory(currentIndex + 1);
+                    } else {
+                        progress = 100;
+                    }
+                }
+                updateProgressBars();
+            }
+
+            requestAnimationFrame(storyLoop);
+        }
+
+        // ==================== 2. تفاعلات اللمس، النقر، والضغط المطول (Hold to Pause) ====================
+        let pressTimer = null;
+        let wasLongPress = false;
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        function handlePressStart(e) {
+            if (['INPUT', 'TEXTAREA', 'BUTTON', 'A'].includes(e.target.tagName) || e.target.closest('button') || e.target.closest('a') || e.target.closest('form')) {
+                return;
+            }
+            wasLongPress = false;
+            if (e.touches && e.touches[0]) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            } else {
+                touchStartX = e.clientX;
+                touchStartY = e.clientY;
+            }
+
+            pressTimer = setTimeout(() => {
+                isHoldPaused = true;
+                wasLongPress = true;
+                updatePauseUI();
+            }, 180);
+        }
+
+        function handlePressEnd(e) {
+            clearTimeout(pressTimer);
+            if (isHoldPaused) {
+                isHoldPaused = false;
+                updatePauseUI();
+            }
+
+            if (['INPUT', 'TEXTAREA', 'BUTTON', 'A'].includes(e.target.tagName) || e.target.closest('button') || e.target.closest('a') || e.target.closest('form')) {
+                return;
+            }
+
+            let endX = touchStartX;
+            let endY = touchStartY;
+            if (e.changedTouches && e.changedTouches[0]) {
+                endX = e.changedTouches[0].clientX;
+                endY = e.changedTouches[0].clientY;
+            } else if (e.clientX !== undefined) {
+                endX = e.clientX;
+                endY = e.clientY;
+            }
+
+            const diffX = endX - touchStartX;
+            const diffY = endY - touchStartY;
+
+            // التحقق من السحب الأفقي (Swipe Left / Right)
+            if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX > 0) {
+                    // سحب لليمين -> في RTL ينتقل للتالي
+                    nextStory();
+                } else {
+                    // سحب لليسار -> في RTL يعود للسابق
+                    prevStory();
+                }
+                return;
+            }
+
+            // إذا كان ضغطاً مطولاً لا يقلب الصفحة عند الإفلات
+            if (wasLongPress) return;
+
+            // النقر على الجانب الأيمن أو الأيسر
+            const rect = storyContainer.getBoundingClientRect();
+            const clickX = endX - rect.left;
+            if (clickX > rect.width * 0.65) {
+                // الجانب الأيمن -> السابق
+                prevStory();
+            } else if (clickX < rect.width * 0.35) {
+                // الجانب الأيسر -> التالي
+                nextStory();
+            }
+        }
+
+        storyContainer.addEventListener('touchstart', handlePressStart, { passive: true });
+        storyContainer.addEventListener('touchend', handlePressEnd);
+        storyContainer.addEventListener('mousedown', handlePressStart);
+        storyContainer.addEventListener('mouseup', handlePressEnd);
+
+        // دعم لوحة المفاتيح (الأسهم والمسافة)
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+            if (e.key === 'ArrowLeft') nextStory();
+            if (e.key === 'ArrowRight') prevStory();
+            if (e.key === ' ') {
+                e.preventDefault();
+                toggleManualPause();
+            }
+        });
+
+        // ==================== 3. العد التنازلي المباشر (4 ديسمبر 2026) ====================
+        const targetDate = new Date('2026-12-04T16:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                ['cd-days', 'cd-hours', 'cd-minutes', 'cd-seconds'].forEach(id => {
+                    document.getElementById(id).innerText = '00';
+                });
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('cd-seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ==================== 4. إشعار منبثق ونسخ الدعوة وإرسال واتساب ====================
+        function showStoryToast(msg) {
+            const toast = document.getElementById('storyToast');
+            document.getElementById('storyToastText').innerText = msg;
+            toast.classList.remove('opacity-0', '-translate-y-3');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', '-translate-y-3');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+
+        function copyInviteLink(e) {
+            if (e) e.stopPropagation();
+            const inviteText = `دعوة لحضور حفل سكراب التخرج 🎓✨\nللخريج: د. عبدالعزيز سعدون عباس\nكلية الحكمة الجامعة - قسم طب الأسنان\n📅 التاريخ: الجمعة 2026/12/4\n📍 المكان: بغداد - مجمع النخيل\nرابط الدعوة: ${window.location.href}`;
+
+            const tempArea = document.createElement('textarea');
+            tempArea.value = inviteText;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try {
+                document.execCommand('copy');
+                showStoryToast('تم نسخ نص ورابط الدعوة لمشاركته!');
+            } catch (err) {
+                showStoryToast('انسخ الرابط من شريط العنوان لمشاركته');
+            }
+            document.body.removeChild(tempArea);
+        }
+
+        function sendWhatsAppRSVP(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const nameInput = document.getElementById('guestName').value.trim();
+            if (!nameInput) {
+                showStoryToast('يرجى كتابة اسمك الكريم أولاً');
+                return;
+            }
+
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const note = document.getElementById('guestNote').value.trim();
+
+            // رقم الواتساب الدولي للعراق: +9647838699064
+            const phone = '9647838699064';
+
+            let msg = `السلام عليكم د. عبدالعزيز سعدون عباس 🎓✨\n`;
+            msg += `بخصوص دعوتكم الكريمة لحفل سكراب التخرج من كلية الحكمة الجامعة (2026/12/4 - مجمع النخيل):\n\n`;
+            msg += `👤 *الاسم:* ${nameInput}\n`;
+            msg += `📌 *الحالة:* ${attendance}\n`;
+            if (note) {
+                msg += `💌 *كلمة تهنئة:* ${note}\n`;
+            }
+            msg += `\nألف مبارك التخرج ومنها للأعلى دائماً! 🎉`;
+
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+            launchConfetti(75);
+            showStoryToast('جاري فتح واتساب لإرسال تأكيد الحضور...');
+
+            setTimeout(() => {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }, 650);
+        }
+
+        // ==================== 5. جزيئات ذهبية ووردية متلألئة في الخلفية ====================
+        const storyCanvas = document.getElementById('storyParticles');
+        const sCtx = storyCanvas.getContext('2d');
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        const cCtx = confettiCanvas.getContext('2d');
+
+        let particles = [];
+        let confettis = [];
+
+        function resizeCanvases() {
+            const rect = storyContainer.getBoundingClientRect();
+            storyCanvas.width = rect.width;
+            storyCanvas.height = rect.height;
+            confettiCanvas.width = rect.width;
+            confettiCanvas.height = rect.height;
+        }
+
+        class Sparkle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * storyCanvas.width;
+                this.y = Math.random() * storyCanvas.height;
+                this.size = Math.random() * 2.2 + 0.5;
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.vy = -Math.random() * 0.45 - 0.1;
+                this.alpha = Math.random() * 0.65 + 0.15;
+                this.isRose = Math.random() > 0.55;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.y < -10 || this.x < -10 || this.x > storyCanvas.width + 10) {
+                    this.reset();
+                    this.y = storyCanvas.height + 10;
+                }
+            }
+            draw() {
+                sCtx.beginPath();
+                sCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                sCtx.fillStyle = this.isRose
+                    ? `rgba(243, 166, 131, ${this.alpha})`
+                    : `rgba(229, 193, 88, ${this.alpha})`;
+                sCtx.fill();
+            }
+        }
+
+        function initSparkles() {
+            particles = [];
+            for (let i = 0; i < 45; i++) {
+                particles.push(new Sparkle());
+            }
+        }
+
+        function animateSparkles() {
+            sCtx.clearRect(0, 0, storyCanvas.width, storyCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateSparkles);
+        }
+
+        function launchConfetti(amount = 45) {
+            const palette = ['#e5c158', '#f7e5a8', '#f3a683', '#fdf8f5', '#cfa336'];
+            for (let i = 0; i < amount; i++) {
+                confettis.push({
+                    x: confettiCanvas.width / 2 + (Math.random() - 0.5) * 140,
+                    y: confettiCanvas.height * 0.45,
+                    vx: (Math.random() - 0.5) * 11,
+                    vy: (Math.random() - 1) * 11 - 2,
+                    size: Math.random() * 6 + 3.5,
+                    color: palette[Math.floor(Math.random() * palette.length)],
+                    rot: Math.random() * 360,
+                    rotSpeed: (Math.random() - 0.5) * 12,
+                    life: 1
+                });
+            }
+        }
+
+        function animateConfetti() {
+            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            for (let i = confettis.length - 1; i >= 0; i--) {
+                const c = confettis[i];
+                c.x += c.vx;
+                c.y += c.vy;
+                c.vy += 0.32;
+                c.rot += c.rotSpeed;
+                c.life -= 0.014;
+
+                if (c.life <= 0) {
+                    confettis.splice(i, 1);
+                    continue;
+                }
+
+                cCtx.save();
+                cCtx.translate(c.x, c.y);
+                cCtx.rotate((c.rot * Math.PI) / 180);
+                cCtx.globalAlpha = c.life;
+                cCtx.fillStyle = c.color;
+                cCtx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size * 0.55);
+                cCtx.restore();
+            }
+            requestAnimationFrame(animateConfetti);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvases();
+            initSparkles();
+        });
+
+        window.onload = function() {
+            resizeCanvases();
+            initSparkles();
+            animateSparkles();
+            animateConfetti();
+            showStory(0);
+            lastFrameTime = performance.now();
+            requestAnimationFrame(storyLoop);
+        };
+    </script>
+</body>
+</html>
